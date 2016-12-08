@@ -1,8 +1,48 @@
 {extend name="common/index"/}
-{block name="title"}{/block}
+{block name="title"}网页模板 - {/block}
 {block name="top_right"}
 {include file="common/user_status"}
 {/block}
 {block name="content"}
+<section class="am-panel am-panel-default">
+    <header class="am-panel-hd">
+        <h3 class="am-panel-title">模板分类</h3>
+    </header>
+    <div class="am-panel-bd">
+        <div class="am-category-top">
+            {volist name="category" id="vo"}
+            <a href="{$vo.id|reurl='template/tag'}" class="am-btn" data-id="{$vo.id}">{$vo.title}</a>
+            {/volist}
+        </div>
+        <div class="am-category-sub">
+
+        </div>
+    </div>
+</section>
+
 {/block}
-{block name="js"}{/block}
+{block name="js"}
+<script type="text/javascript">
+    $('.am-category-top>a').hover(function(){
+        id = $(this).data('id');
+        $(this).addClass('am-active').siblings('.am-category-top>a').removeClass('am-active');
+        get_sub_category(id);
+    })
+    var subCategoryArea= $('.am-category-sub');
+    var defaultId = "{$category.0.id}";
+    get_sub_category(defaultId);
+    function get_sub_category(e){
+        subCategoryArea.html('<div class="am-padding-xs am-text-center am-text-sm am-text-note"><i class="am-icon-spinner am-icon-pulse"></i> 分类请求中...</div>');
+        $.get("{:url('index/template/get_sub_category_json')}",{id:e},function(res){
+            if(res.code ==200){
+                $.each(res.data,function(i,v){
+                    subCategoryArea.append('<a href="http://{:request()->host()}/template/tag/'+v.id+'.html">'+v.title+'</a>');
+                })
+            }
+            if(res){
+                subCategoryArea.find('div').remove();
+            }
+        })
+    }
+</script>
+{/block}

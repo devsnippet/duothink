@@ -425,3 +425,33 @@ a:hover{
     right:.5rem;
     top:.5rem;
 }
+.am-category-top>a {
+    background-color: #f6f6f6;
+    font-size:1.5rem;
+    border:none;
+}
+.am-category-sub>a:hover,
+.am-category-top>a:hover{
+    border-color: #2a8c70;
+    color: #2a8c70;
+    transition-duration: 500ms;
+}
+.am-category-top>a.am-active{
+    background-color: #2a8c70;
+    border-color: #2a8c70;
+    color: #fff;
+}
+.am-category-sub{
+    margin-top: .5rem;
+}
+.am-category-sub>a {
+    display: inline-block;
+    padding:.25rem .75rem;
+    border:1px solid #eee;
+    font-size:1.4rem;
+    margin-top: .5rem;
+    margin-right: .5rem;
+}
+.am-panel-default {
+    border:1px solid #eee;
+}

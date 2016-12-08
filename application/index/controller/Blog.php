@@ -34,17 +34,7 @@ class blog extends Common {
      */
     public function index(){
         $getorder = input('get.order','default');
-        switch ($getorder){
-            case 'remend':
-                $order = ['remend'=>'desc','id'=>'desc'];
-                break;
-            case 'hot':
-                $order = ['reples'=>'desc','views'=>'desc'];
-                break;
-            default:
-                $order = ['id'=>'desc'];
-        }
-        $list = Article::where(['cid'=>18,'status'=>1])->order($order)->cache(true,600)->paginate(20);
+        $list = Article::datalist('',18,$getorder);
         $this->assign('list',$list);
         $this->category();
         $this->hot_blog();
@@ -58,12 +48,18 @@ class blog extends Common {
      */
     public function lists(){
         $catid = input('param.value','');
+        $getorder = input('get.order','default');
+
         $cate = Category::search('id',$catid); //查询分类
         if(!$catid || !$cate){
             abort(404,'你访问的分类不存在或已经被删除');
         }
-        $this->datalists($catid);//分类输出
+        $list = Article::datalist($catid,'',$getorder);
+        $this->assign('list',$list);
+
         $this->assign('cate',$cate);
+        $this->assign('order',$getorder);
+
         $this->category();
         $this->hot_category_blog($catid);
 
@@ -85,7 +81,7 @@ class blog extends Common {
         $this->category();
         $this->user_dynamic($article['uid']);
         $this->top_comments($article['catid']);
-
+        self::article_plus($id);
         return $this->fetch();
     }
 
@@ -134,5 +130,14 @@ class blog extends Common {
     public function top_comments($catid){
         $comments = Article::where('catid',$catid)->order('reples','desc')->limit(8)->cache(true,600)->select();
         $this->assign('comments',$comments);
+    }
+
+    /**
+     * 文章访问添加
+     * @param $id
+     */
+    public static function article_plus($id){
+        $views = rand(1,9); //随机访问数增加
+        Article::where('id',$id)->setInc('views',$views,60); //60s延迟更新
     }
 }
