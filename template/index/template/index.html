@@ -23,21 +23,39 @@
 {/block}
 {block name="js"}
 <script type="text/javascript">
-    $('.am-category-top>a').hover(function(){
-        id = $(this).data('id');
-        $(this).addClass('am-active').siblings('.am-category-top>a').removeClass('am-active');
-        get_sub_category(id);
-    })
     var subCategoryArea= $('.am-category-sub');
     var defaultId = "{$category.0.id}";
-    get_sub_category(defaultId);
+    $(document).ready(function(){
+        $('.am-category-top>a').hover(function(){
+            id = $(this).data('id');
+            $(this).addClass('am-active').siblings('.am-category-top>a').removeClass('am-active');
+            get_sub_category(id);
+        });
+        get_sub_category(defaultId);
+    });
+    /**
+     * 请求服务器分类信息存储json格式
+     * 本地化存储，避免多次请求
+     * @param e
+     * @returns {boolean}
+     */
     function get_sub_category(e){
         subCategoryArea.html('<div class="am-padding-xs am-text-center am-text-sm am-text-note"><i class="am-icon-spinner am-icon-pulse"></i> 分类请求中...</div>');
+        var data = cache('template_category_'+e);
+        if(data){
+            data = json_to_obj(data);
+            subCategoryArea.find('div').remove();
+            $.each(data,function(i,v){
+                subCategoryArea.append('<a href="http://{:request()->host()}/template/tag/'+v.id+'.html">'+v.title+'</a>');
+            });
+            return false;
+        }
         $.get("{:url('index/template/get_sub_category_json')}",{id:e},function(res){
             if(res.code ==200){
                 $.each(res.data,function(i,v){
                     subCategoryArea.append('<a href="http://{:request()->host()}/template/tag/'+v.id+'.html">'+v.title+'</a>');
                 })
+                cache('template_category_'+e,JSON.stringify(res.data)); //本地存储分类避免频繁请求服务器
             }
             if(res){
                 subCategoryArea.find('div').remove();
