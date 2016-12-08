@@ -10,26 +10,39 @@
 // +----------------------------------------------------------------------
 
 return [
+    //博客
     'blog/tag/:value' => 'index/blog/lists',
     'blog/:id' => 'index/blog/article',
     'blog' => 'index/blog/index',
-    'template' => 'index/template/index',
+
+    //模板
     'template/tag/:value' => 'index/template/lists',
     'template/:id' => 'index/template/article',
-    'jquery' => 'index/jquery/index',
+    'template' => 'index/template/index',
+
+    //jquery
     'jquery/tag/:value' => 'index/jquery/lists',
     'jquery/:id' => 'index/jquery/article',
-    'thinkphp' => 'index/thinkphp/index',
+    'jquery' => 'index/jquery/index',
+
+    //thinkphp
     'thinkphp/tag/:value' => 'index/thinkphp/lists',
     'thinkphp/:id' => 'index/thinkphp/article',
-    'wenda' => 'index/wenda/index',
+    'thinkphp' => 'index/thinkphp/index',
+
+    //问答
     'wenda/tag/:value' => 'index/wenda/lists',
     'wenda/:id' => 'index/wenda/article',
-    'tools' => 'index/tools/index',
+    'wenda' => 'index/wenda/index',
+
+    //工具箱
     'tools/tag/:value' => 'index/tools/lists',
     'tools/:id' => 'index/tools/article',
+    'tools' => 'index/tools/index',
 
     'page/:id'   => ['page/index', ['method' => 'get'], ['id' => '\w+']],
+
+    //用户信息
     'api_user_user_login' => 'user/account/user_login',
     'api_user_user_register' => 'user/account/user_register',
     'api_user_user_login_do' => 'user/account/user_login_do',
