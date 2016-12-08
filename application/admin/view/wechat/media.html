@@ -1,0 +1,7 @@
+{extend name="base/index"/}
+{block name="content"}
+    <div class="am-legend">图文素材列表</div>
+    <div class="am-margin-bottom am-cf">
+        <a href="{:url('create_new_media')}?type=2&openid={:guid()}" class="am-btn am-btn-success am-btn-xs am-radius am-icon-plus"> 新建图文素材</a>
+    </div>
+{/block}

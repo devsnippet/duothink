@@ -1,0 +1,59 @@
+{extend name="common/index"/}
+{block name="title"}{$data.subject} - {/block}
+{block name="seo"}<meta name="keywords" content="{$data.keywords}">
+<meta name="description" content="{$data.message|mbs='200'}">{/block}
+{block name="top_right"}
+{include file="common/user_status"}
+{/block}
+{block name="content"}
+<div class="am-g">
+    <div class="am-u-sm-9">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">{$data.subject}</h3>
+            </header>
+            <div class="am-panel-bd am-text-center">
+                <img src="{$data.thumb}" alt="{$data.subject}" style="max-width: 90%">
+                <div class="am-text-left">
+                    {$data.message|htmlspecialchars_decode}
+                </div>
+                <div class="am-tags-group">{$data.keywords|tags}</div>
+            </div>
+            <footer class="am-panel-footer am-text-sm am-text-note">多想素材网为用户免费分享产生，若发现您的权利被侵害，请联系tousu@duothink.com ，我们尽快处理</footer>
+        </section>
+
+    </div>
+    <div class="am-u-sm-3 am-padding-left-0">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <span class="am-icon-plus am-btn am-btn-default am-btn-xs am-fr am-margin-top-sm am-radius"> 关注</span>
+                <img src="{$author.avatar.avatar}" width="48" class="am-round" alt="">
+                <strong>{$author.username}</strong>
+            </header>
+            <div class="am-panel-bd">
+                <div class="am-g">
+                    <div class="am-u-sm-4 am-padding-right-0">
+                        <a href="" class="am-btn am-btn-warning am-btn-block am-icon-star"> 收藏</a>
+                    </div>
+                    <div class="am-u-sm-8">
+                        <a href="" class="am-btn am-btn-primary am-icon-download am-btn-block"> 免费下载</a>
+                    </div>
+                </div>
+                <div class="am-margin-top-sm">素材信息</div>
+                <ul class="am-list am-list-static am-text-sm">
+                    <li>格式：</li>
+                    <li>大小：</li>
+                    <li>上传日期：{$data.dateline|date='Y/m/d',###}</li>
+                </ul>
+                <div>
+                    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+{/block}
+{block name="js"}
+{/block}

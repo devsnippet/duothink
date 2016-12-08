@@ -1,0 +1,172 @@
+.am-form .am-field-auto {
+    width: auto !important;
+}
+
+.am-form input[type=number],
+.am-form input[type=search],
+.am-form input[type=text],
+.am-form input[type=password],
+.am-form input[type=datetime],
+.am-form input[type=datetime-local],
+.am-form input[type=date],
+.am-form input[type=month],
+.am-form input[type=time],
+.am-form input[type=week],
+.am-form input[type=email],
+.am-form input[type=url],
+.am-form input[type=tel],
+.am-form input[type=color],
+.am-form textarea,
+.am-form-field {
+    font-size: 1.4rem;
+}
+.am-form select{
+    font-size:1.3rem !important;
+}
+
+.alert-group > .am-alert {
+    position: fixed;
+    z-index: 1106;
+    top: 3px;
+    left: 50%;
+
+    display: none;
+
+    width: 500px;
+    margin: 0 0 0 -250px;
+    border-radius: 3px;
+    font-size:1.4rem;
+    text-align: center;
+}
+
+.alert-group .am-alert-marks {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.am-border-0 {
+    border: none !important;
+}
+
+.am-btn-default {
+    background-color: #f5f5f5;
+}
+
+.alert-group > .am-alert > .am-close {
+    opacity: .8;
+    color: #fff;
+}
+
+.am-border-bottom {
+    border-bottom: 1px solid #eee;
+}
+
+.am-table .am-checkbox {
+    margin: 0;
+}
+
+.am-selected-btn.am-btn-default {
+    background-color: #fff;
+}
+.am-modal {
+    box-shadow: 0 0 15px rgba(0,0,0,0.02);
+}
+.am-modal > .am-modal-dialog {
+    font-size: 1.4rem;
+
+    overflow: hidden;
+
+    text-align: left;
+
+    border-radius: 3px;
+    background-color: #fff;
+    border:1px solid #e1e4eb;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.am-modal > .am-modal-dialog > .am-modal-bd {
+    padding-bottom: 10px;
+
+    text-align: left;
+}
+
+.am-modal-dialog > .am-modal-hd {
+    margin-bottom: 1rem;
+    padding-top: .7rem;
+
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+.am-modal-hd .am-close {
+    top: 7px;
+    right: 7px;
+}
+
+.am-modal .am-form .am-form-label {
+    font-weight: 400;
+
+    padding-right: 0;
+}
+
+.am-text-note {
+    color: #888;
+}
+.am-text-normal {
+    font-weight: 400 !important;
+}
+.am-form-button {
+    text-align: right;
+}
+
+.am-modal .am-form-button {
+    padding: 5px;
+
+    border-radius: 2px;
+    background-color: #f8f8f8;
+}
+
+.am-modal .am-modal-footer {
+    display: block;
+
+    padding: 6px;
+
+    text-align: right;
+}
+
+.am-modal-confirm .am-modal-footer {
+    display: table;
+
+    text-align: center;
+}
+
+.am-modal-confirm .am-modal-hd {
+    border-bottom: none;
+    background-color: #fff;
+}
+
+.am-border {
+    border: 1px solid #eee;
+}
+
+.am-table > tbody > tr > td {
+    vertical-align: middle;
+}
+.am-container {
+    width: 1200px !important;
+    max-width: 1200px;
+}
+.am-bg-gray {
+    background-color: #f8f8f8;
+}
+.am-position-relative{
+    position: relative;
+}
+.am-position-absolute{
+    position: absolute;
+}

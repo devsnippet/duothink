@@ -1,0 +1,82 @@
+{extend name="base/index"/}
+{block name="content"}
+    <form action="{:url('ed_channel')}" method="POST" role="form" class="am-form am-form-horizontal" id="channel">
+        <legend>编辑栏目 - {$channel.title}</legend>
+        <input type="hidden" name="id" value="{$channel.id}">
+        <div class="am-form-group">
+            <label for="title" class="am-form-label am-u-sm-1">栏目名称</label>
+            <div class="am-u-sm-2 am-u-end">
+                <input type="text" id="title" name="title" value="{$channel.title}">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="alias" class="am-form-label am-u-sm-1">栏目别名</label>
+            <div class="am-u-sm-2 am-u-end">
+                <input type="text" id="alias" name="alias" value="{$channel.alias}" required placeholder="请输入栏目别名，用于url显示">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="pid" class="am-form-label am-u-sm-1">上级栏目</label>
+            <div class="am-u-sm-2 am-u-end">
+                <select name="pid" id="pid">
+                    <option value="0">一级栏目</option>
+                    {volist name="channelList" id="vo"}
+                    <option value="{$vo.id}" {eq name="vo.id" value="$channel.pid"}selected{/eq}>{eq name="vo.level" value="2"}&nbsp;&nbsp;|--{/eq} {$vo.title}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="keywords" class="am-form-label am-u-sm-1">关键字</label>
+            <div class="am-u-sm-6 am-u-end">
+                <input type="text" id="keywords" name="keywords" value="{$channel.keywords}">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="description" class="am-form-label am-u-sm-1">描述</label>
+            <div class="am-u-sm-6 am-u-end">
+                <textarea name="description" id="description" cols="30" rows="3">{$channel.description}</textarea>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="document" class="am-form-label am-u-sm-1">文档模型</label>
+            <div class="am-u-sm-2 am-u-end">
+                <select name="document" id="document">
+                    {volist name="document" id="vo"}
+                    <option value="{$vo.alias}" {eq name="vo.alias" value="$channel.document" }selected{/eq}>{$vo.title}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="sort" class="am-form-label am-u-sm-1">排序</label>
+            <div class="am-u-sm-1 am-u-end">
+                <input type="text" name="sort" id="sort" value="{$channel.sort}">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="allow" class="am-form-label am-u-sm-1">允许发布</label>
+            <div class="am-u-sm-2 am-u-end">
+                <select name="allow" id="allow">
+                    <option value="1" {eq name="channel.allow" value="1"}selected{/eq}>允许发布内容</option>
+                    <option value="0" {eq name="channel.allow" value="0"}selected{/eq}>禁止发布内容</option>
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="status" class="am-form-label am-u-sm-1">是否开启</label>
+            <div class="am-u-sm-2 am-u-end">
+                <select name="status" id="status">
+                    <option value="1" {eq name="channel.status" value="1"}selected{/eq}>正常启用</option>
+                    <option value="0" {eq name="channel.status" value="0"}selected{/eq}>隐藏栏目</option>
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="allow" class="am-form-label am-u-sm-1">&nbsp;</label>
+            <div class="am-u-sm-11">
+                <button type="button" data-ajax-submit="#channel" class="am-btn am-btn-primary am-radius am-icon-check"> 提交保存</button>
+            </div>
+        </div>
+    </form>
+{/block}

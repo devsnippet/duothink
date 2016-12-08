@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>后台登陆 - powered by duothink！</title>
+    <meta name="renderer" content="webkit">
+    <link rel="icon" type="image/png" href="__i__/favicon.png{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.min.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.theme.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/admin.css{:vcs()}">
+
+    <style type="text/css">
+        body {
+            background-color: #f6f7f6;
+        }
+        .am-panel-login {
+            width: 420px;
+            height: 320px;
+            margin-top: -240px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -210px;
+            z-index: 666;
+            background-color: transparent;
+            border:none;
+            box-shadow: none;
+        }
+
+        .am-panel-login:focus,
+        .am-panel-login:hover {
+
+        }
+
+        .am-form input[type="text"],
+        .am-form input[type="password"] {
+            font-size: 1.8rem;
+            border-radius: 2px;
+        }
+        .form-legend {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 1rem;
+            padding:.5rem;
+            text-align: center;
+            font-size:2rem;
+            border-radius: 2px 2px 0 0;
+        }
+        .bg-text {
+            font-size: 20rem;
+            color: #f1f1f1;
+            text-align: center;
+            letter-spacing: -1px;
+            color: rgba(0, 0, 0, 0.1);
+            -webkit-font-smoothing: antialiased;
+            background-image: url("__i__/logo_bg.jpg");
+            background-image: none\0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transpare;
+            opacity: .2;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-text">duothink</div>
+<section class="am-panel am-panel-default am-panel-login">
+    <div class="am-panel-bd">
+        <form class="am-form" id="mp-account-login-form">
+            <div class="form-legend">后台管理登录</div>
+            <div class="am-form-group">
+                <input type="text" name="username" placeholder="账号/手机" required>
+            </div>
+            <div class="am-form-group">
+                <input type="password" name="password" placeholder="密码" required>
+            </div>
+            <div class="am-form-group am-g am-cf">
+                <div class="am-u-sm-6 am-padding-0">
+                    <input type="text" name="verify" placeholder="验证码" required>
+                </div>
+                <div class="am-u-sm-6 am-padding-right-0">
+                    <img src="{:url('common/helper/verify')}" id="verifyImg" onclick="refreshVerify()"
+                         class="am-radius am-border">
+                </div>
+            </div>
+            <button type="button" id="mp-account-login-submit"
+                    class="am-btn am-btn-primary am-btn-block am-radius am-icon-check am-padding-top-sm am-padding-bottom-sm"> 安全登录
+            </button>
+        </form>
+    </div>
+</section>
+
+<div class="alert-group">
+    <div class="am-alert am-alert-success am-animation-scale-up" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+    <div class="am-alert am-alert-danger am-animation-scale-up" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+    <div class="am-alert am-alert-warning am-animation-scale-up" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+</div>
+<!--[if l t IE 9]><![endif]-->
+<script src="__j__/jquery.min.js{:vcs()}"></script>
+<script src="__j__/amazeui.min.js{:vcs()}"></script>
+<script>var spm = "{:spm()}";</script>
+<script src="__j__/common.min.js{:vcs()}"></script>
+<script src="__j__/admin.extend.min.js{:vcs()}"></script>
+</body>
+</html>

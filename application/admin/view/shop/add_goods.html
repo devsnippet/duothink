@@ -1,0 +1,86 @@
+{extend name="base/index"/}
+{block name="css"}{:editorCSS()}{/block}
+{block name="content"}
+    <div class="am-legend"><span class="am-icon-plus"></span> 添加商品</div>
+<form action="{:url('add_goods_go')}" method="POST" role="form" class="am-form am-text-sm" id="goods-form">
+    <input type="hidden" name="openid" value="{:input('get.openid')}">
+    <div class="am-form-group">
+        <label for="catid">商品标题</label>
+        <div class="am-g">
+            <div class="am-u-sm-2 am-padding-left-0">
+                <select name="catid" id="catid" required>
+                   {volist name="category" id="vo"}
+                    <option value="{$vo.id}">{$vo.title}</option>
+                   {/volist}
+                </select>
+            </div>
+            <div class="am-u-sm-8 am-padding-left-0 am-u-end">
+                <input type="text" id="subject" name="subject" placeholder="输入你商品标题" required>
+            </div>
+        </div>
+    </div>
+    <div class="am-form-group">
+
+        <div class="am-g">
+            <div class="am-u-sm-2 am-padding-left-0">
+                <label for="price">价格</label>
+                <input type="number" name="price" id="price" placeholder="商品价格" required>
+            </div>
+            <div class="am-u-sm-2 am-u-end am-padding-left-0">
+                <label for="price">库存</label>
+                <div class="am-input-group am-input-group-sm">
+                    <span class="am-input-group-label"><input type="checkbox" name="isstock" value="1" checked></span>
+                    <input type="number" name="stock" id="stock" value="" placeholder="商品库存" class="am-form-field">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="am-form-group">
+        <label>规格</label>
+        <div class="am-widget-spec">
+            <div class="am-btn am-btn-xs am-btn-success am-icon-th-large am-radius"> 添加规格</div>
+            <div class="am-widget-spec-container">
+                <div class="am-form-group am-cf">
+                    <div class="am-u-sm-2">规格</div>
+                    <div class="am-u-sm-2">名称</div>
+                    <div class="am-u-sm-2">价格</div>
+                    <div class="am-u-sm-6"></div>
+                </div>
+
+            </div>
+            <div class="am-widget-spec-dropdown">
+                <input type="text" id="spec-item" value="" placeholder="规格">
+                <input type="text" id="spec-name" value="" placeholder="规格名称">
+                <input type="text" id="spec-price" value="" placeholder="价格">
+                <div class="am-btn am-btn-xs am-radius am-btn-primary am-icon-check" onclick="WidgetSpecAddItem()" id="spec-btn"> 添加</div>
+            </div>
+        </div>
+        <div class="am-alert am-alert-secondary am-radius am-text-xs">
+            <p>如果是是水票，请设置规格规格为水票名称，名称为可用次数，如：
+                <span class="am-badge am-text-normal am-badge-danger am-radius">水票</span>
+                <span class="am-badge am-text-normal am-badge-danger am-radius">10</span>
+                <span class="am-badge am-text-normal am-badge-danger am-radius">100</span>
+            </p>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="">商品缩略图</label>
+        <div class="am-g">
+            <div class="am-u-sm-2 am-u-end am-padding-left-0">
+                {:puploader_template()}
+            </div>
+        </div>
+        <div class="am-widget-upload-imag-raw am-cf"></div>
+    </div>
+    <div class="am-form-group">
+        <label for="">商品详情</label>
+        {:editorTextarea('message',600)}
+    </div>
+    <button type="button" data-ajax-submit="#goods-form" class="am-btn am-btn-primary am-btn-sm am-icon-check"> 立即上架</button>
+</form>
+{/block}
+{block name="js"}
+{:editorJS()}
+{:puploader(true)}
+{/block}

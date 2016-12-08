@@ -1,0 +1,55 @@
+{extend name="base/index"/}
+{block name="content"}
+<div class="am-legend"><span class="am-icon-plus"></span> 添加分类导航</div>
+<form action="{:url('add_btn_category')}" method="POST" role="form" class="am-form am-text-sm" id="form">
+
+    <div class="am-form-group am-cf">
+        <div class="am-u-sm-5 am-padding-left-0">
+            <label for="title">分类名称</label>
+            <input type="text" name="title" id="title" placeholder="输入幻灯片标题" required>
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="am-u-sm-5 am-padding-left-0">
+            <label for="url">链接</label>
+            <input type="text" id="url" name="url" placeholder="输入链接" required>
+        </div>
+        <div class="am-u-sm-3 am-u-end">
+            <label for="">选择分类自动生成</label>
+            <select id="catid">
+                {volist name="category" id="vo"}
+                <option value="{$vo.openid}">{$vo.title}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    <div class="am-form-group am-cf">
+        <div class="am-u-sm-3 am-padding-left-0">
+            <label for="order">排序</label>
+            <input type="text" name="order" id="order" value="0" placeholder="排序，数字越大越靠前" required>
+        </div>
+    </div>
+
+    <div class="am-form-group am-cf">
+        <div class="am-u-sm-3 am-padding-left-0">
+            <label for="thumb">图标 <small>（保持正方形即可）</small></label>
+            {:puploader_template()}
+        </div>
+
+    </div>
+
+    <button type="button" data-ajax-submit="#form" class="am-btn am-btn-primary am-btn-sm am-radius am-icon-check"> 提交保存</button>
+</form>
+{/block}
+{block name="js"}
+{:puploader(false)}
+<script>
+    $(document).ready(function(){
+        $(document).on('blur','#catid',function(){
+            var openid = $(this).val();
+            var url = "{:url('mshop/index/goodslist')}?openid="+openid;
+            $('#url').attr('value',url);
+        })
+    })
+</script>
+{/block}

@@ -1,0 +1,34 @@
+{extend name="base/index"/}
+{block name="content"}
+<div class="am-legend"> 群发消息</div>
+<div class="am-alert am-alert-secondary am-text-sm am-radius am-border-0">
+    <p>为保障用户体验，微信公众平台严禁恶意营销以及诱导分享朋友圈，严禁发布色情低俗、暴力血腥、政治谣言等各类违反法律法规及相关政策规定的信息。一旦发现，我们将严厉打击和处理。</p>
+</div>
+<section class="am-panel am-panel-default am-text-sm">
+    <header class="am-panel-hd">
+        <span class="am-icon-indent am-wx-sent-btn"> 图文</span>
+        <span class="am-icon-file-text-o am-wx-sent-btn"> 文字</span>
+        <span class="am-icon-file-image-o am-wx-sent-btn"> 图片</span>
+        <span class="am-icon-volume-up am-wx-sent-btn"> 语音</span>
+        <span class="am-icon-video-camera am-wx-sent-btn"> 视频</span>
+    </header>
+    <div class="am-panel-bd">
+        <ul class="am-avg-sm-2">
+            <li class="am-padding-right-xs">
+                <div class="am-widget-send" data-media="select">
+                    <div class="am-text-center"><span class="am-icon-plus am-text-xl"></span></div>
+                    <div class="am-text-note am-text-center">从素材库中选择</div>
+                </div>
+            </li>
+            <li class="am-padding-left-xs">
+                <div class="am-widget-send" data-media="create">
+                    <div class="am-text-center"><span class="am-icon-plus am-text-xl"></span></div>
+                    <div class="am-text-note am-text-center">新建图文素材</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer class="am-panel-footer">订阅号每天能群发一次消息，服务号每月群发4次</footer>
+</section>
+<div class="am-btn am-btn-sm am-btn-success am-icon-send"> 群发消息</div>
+{/block}

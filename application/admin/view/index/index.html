@@ -1,0 +1,63 @@
+{extend name="base/index"/}
+{block name="content"}
+    <div class="am-text-lg"><strong>您好！</strong><small>欢迎使用duothink内容管理系统</small></div>
+<hr class="am-margin-top-sm">
+<ul class="am-margin-bottom am-avg-sm-6 am-index-counts-btn">
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           文章 <span class="am-badge am-round am-badge-primary">1200</span>
+       </a>
+   </li>
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           产品 <span class="am-badge am-round am-badge-secondary">1200</span>
+       </a>
+   </li>
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           商品 <span class="am-badge am-round am-badge-warning">1200</span>
+       </a>
+   </li>
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           栏目 <span class="am-badge am-round am-badge-primary">1200</span>
+       </a>
+   </li>
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           分类 <span class="am-badge am-round am-badge-danger">1200</span>
+       </a>
+   </li>
+   <li>
+       <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+           历史浏览 <span class="am-badge am-round am-badge-success">1200</span>
+       </a>
+   </li>
+</ul>
+<section class="am-panel am-panel-default am-radius">
+    <header class="am-panel-hd">
+        <h3 class="am-panel-title am-text-sm">快捷方式</h3>
+    </header>
+    <div class="am-panel-bd am-qmenu-group">
+        <a href="" class="am-btn am-btn-default am-icon-pencil am-radius"> 发布内容</a>
+        <a href="" class="am-btn am-btn-default am-icon-plus am-radius"> 发布产品</a>
+        <a href="" class="am-btn am-btn-default am-icon-plus am-radius"> 添加商品</a>
+        <a href="" class="am-btn am-btn-default am-icon-user-plus am-radius"> 添加用户</a>
+        <a href="" class="am-btn am-btn-default am-icon-bars am-radius"> 栏目管理</a>
+        <a href="" class="am-btn am-btn-default am-icon-th am-radius"> 分类管理</a>
+        <a href="" class="am-btn am-btn-default am-icon-database am-radius"> 数据备份</a>
+        <a href="" class="am-btn am-btn-default am-icon-file-text-o am-radius"> 浏览日志</a>
+    </div>
+</section>
+
+<section class="am-panel am-panel-default am-radius">
+    <header class="am-panel-bd"><span class="am-icon-info-circle"></span> 系统信息</header>
+    <ul class="am-list am-list-static am-text-sm">
+        <li>程序版本：duothink 5.0 / 官网：http://www.duothink.com</li>
+        <li>框架版本：ThinkPHP {$Think.THINK_VERSION}</li>
+        <li>服务器信息：{$_SERVER['SERVER_SOFTWARE']} （建议nginx 1.7以上）</li>
+        <li>PHP版本：{:phpv()} / MYSQL版本：{:sqlv()} / 上传许可：{:ini_get('upload_max_filesize')}</li>
+        <li>开发者：imdante @763093576@qq.com</li>
+    </ul>
+</section>
+{/block}

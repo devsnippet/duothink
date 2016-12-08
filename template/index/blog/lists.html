@@ -1,0 +1,71 @@
+{extend name="common/index"/}
+{block name="title"}{$cate.0.title} - 博客 - {/block}
+{block name="top_right"}
+{include file="common/user_status"}
+{/block}
+{block name="content"}
+<ol class="am-breadcrumb">
+    <li><a href="http://{:request()->host()}">首页</a></li>
+    <li><a href="http://{:request()->host()}/blog">博客</a></li>
+    <li class="am-active">{$cate.0.title}</li>
+</ol>
+<div class="am-g">
+    <div class="am-u-sm-9">
+        <div class="am-category-bar">
+            <h1><span>{$cate.0.title|mbs='1'}</span>{$cate.0.title}</h1>
+            <span class="am-btn am-btn-success am-icon-plus am-btn-xs am-radius" onclick="followCategory({$cate.0.id})"> 关注</span>
+        </div>
+        <div class="am-channel-tab">
+            <ul class="am-nav am-nav-pills">
+                <li {eq name="order" value="remend"}class="am-active"{/eq}><a href="?order=remend">推荐</a></li>
+                <li {eq name="order" value="default"}class="am-active"{/eq}><a href="/blog">最新</a></li>
+                <li {eq name="order" value="hot"}class="am-active"{/eq}><a href="?order=hot">热门</a></li>
+            </ul>
+        </div>
+        <div class="am-section am-padding-top">
+            {volist name="list" id="vo"}
+            <div class="am-section-item">
+                <div class="am-section-left">
+                    <div class="am-section-remend">{$vo.remend}<p>推荐</p></div>
+                    <div class="am-section-views">{$vo.views}<p>浏览</p></div>
+                </div>
+                <div class="am-section-content">
+                    <h3><a href="{$vo.id|reurl='blog'}">{$vo.subject}</a></h3>
+                    <p>{$vo.description}</p>
+                    <div class="am-section-info">
+                        <a href="{$vo.uid|reurl='u'}" rel="nofollow"><img src="__i__/avatar.png" width="20" height="20" class="am-round" alt=""> admin</a>
+                        发布于 <a href="{$vo.catid|reurl='blog/tag'}">{$vo->category->title}</a> {$vo.dateline|get_friendly_time}
+                    </div>
+                </div>
+            </div>
+            {/volist}
+            {$list->render()}
+        </div>
+    </div>
+    <div class="am-u-sm-3">
+        <section class="am-panel am-panel-warning am-radius">
+            <div class="am-panel-bd am-text-sm">
+                duothink是专注于程序猿常用网页特效、网站设计素材和thinkphp交流问答，分享thinkphp开源案例的社区。
+                <div class="am-margin-top-sm">
+                    <a href="" class="am-btn am-btn-success am-btn-block am-btn-sm am-radius">登录</a>
+                </div>
+            </div>
+        </section>
+        <div class="am-border-bottom am-padding-bottom-xs">博客分类</div>
+        <ul class="am-avg-sm-2 am-list-category">
+            {volist name="category" id="vo"}
+            <li><a href="{$vo.id|reurl='blog/tag'}"><span class="am-category-icon">{$vo.title|mbs='1'}</span>{$vo.title}</a></li>
+            {/volist}
+        </ul>
+        <div class="am-border-bottom am-padding-bottom-xs">热门文章</div>
+        <ul class="am-list am-list-hot">
+            {volist name="hot_blog" id="vo"}
+            <li>
+                <a href="{$vo.id|reurl='blog'}" class="am-text-truncate" title="{$vo.subject}"><span class="am-list-icon">{$vo.subject|mbs='1'}</span>{$vo.subject}</a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+
+{/block}

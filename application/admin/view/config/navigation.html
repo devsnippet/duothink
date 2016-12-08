@@ -1,0 +1,147 @@
+{extend name="base/index"/}
+{block name="content"}
+<div class="am-margin-bottom">
+    <button type="button" onclick="showModel('add');" class="am-btn am-btn-xs am-icon-plus am-btn-success am-radius"> 添加导航</button>
+</div>
+<table class="am-table am-table-hover am-text-sm am-table-striped">
+    <thead>
+    <tr>
+        <th width="400">名称</th>
+        <th>描述</th>
+        <th>状态</th>
+        <th width="260">管理</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name="list" id="vo"}
+    <tr>
+        <td class="am-level-tree-{$vo.level}"><span class="am-icon-bars am-text-note am-text-sm"></span> {$vo.title}</td>
+        <td>{$vo.value}</td>
+        <td>{$vo.status ? '<span class="am-icon-check am-text-success"></span>' : '<span class="am-text-danger am-icon-eye-slash">&nbsp;</span>'}</td>
+        <td>
+            <div class="am-btn-group am-btn-group-xs">
+                <button type="button" data-editor-navigation="{$vo.id}" class="am-btn am-btn-default am-icon-pencil"> 编辑</button>
+                <button type="button" data-pid="{id:{$vo.id},target:'add'}" class="am-btn am-btn-default am-icon-level-down"> 子菜单</button>
+                <button type="button" data-del="{id:{$vo.id},target:'del',url:'{:url('del_navigation')}'}" class="am-btn am-btn-default am-icon-times"> 删除</button>
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    </tbody>
+</table>
+</table>
+{/block}
+{block name="modal"}
+{block name="modal"}
+<div class="am-modal" tabindex="-1" id="add">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"> 添加导航
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form action="{:url('add_navigation')}" method="POST" role="form" class="am-form am-form-horizontal" id="add-navigation">
+                <input type="hidden" name="pid" value="0">
+                <input type="hidden" name="type" value="1">
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">导航名称</label>
+                    <div class="am-u-sm-5 am-u-end">
+                        <input type="text" name="title" class="am-radius" placeholder="输入导航名称" required>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">导航链接</label>
+                    <div class="am-u-sm-10">
+                        <input type="text" name="value" class="am-radius" placeholder="输入导航链接">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">排序</label>
+                    <div class="am-u-sm-3">
+                        <input type="text" name="order" class="am-radius" value="0">
+                    </div>
+                    <div class="am-u-sm-7 am-text-xs am-text-note ">数字越大越靠前</div>
+                </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" data-ajax-submit="#add-navigation" class="am-btn am-btn-primary am-btn-sm am-radius am-icon-check"> 确认添加</button>
+            <button type="button" data-am-modal-close class="am-btn am-btn-default am-btn-sm am-radius am-icon-times"> 取消</button>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="del">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">菜单删除确认</div>
+        <div class="am-modal-bd">
+            你将删除选中菜单，请谨慎操作！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal" tabindex="-1" id="ed">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"> 编辑导航
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form action="{:url('ed_navigation')}" method="POST" role="form" class="am-form am-form-horizontal"
+                  id="ed-navigation">
+                <input type="hidden" name="id" value="">
+                <input type="hidden" name="pid" value="0">
+                <input type="hidden" name="type" value="1">
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">导航名称</label>
+                    <div class="am-u-sm-5 am-u-end">
+                        <input type="text" name="title" class="am-radius" placeholder="输入导航名称" required>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">导航链接</label>
+                    <div class="am-u-sm-10">
+                        <input type="text" name="value" class="am-radius" placeholder="输入导航链接">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label class="am-form-label am-u-sm-2">排序</label>
+                    <div class="am-u-sm-3">
+                        <input type="text" name="order" class="am-radius" value="0">
+                    </div>
+                    <div class="am-u-sm-7 am-text-xs am-text-note ">数字越小越靠前</div>
+                </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" data-ajax-submit="#ed-navigation" class="am-btn am-btn-primary am-btn-sm am-radius am-icon-check"> 确认添加</button>
+            <button type="button" data-am-modal-close class="am-btn am-btn-default am-btn-sm am-radius am-icon-times"> 取消</button>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click','[data-editor-navigation]',function(){
+            var _id = $(this).data('editor-navigation');
+            if(!_id) return false;
+            var url = "{:url('get_navigation_json')}";
+            var _form = $('#ed-navigation');
+            $.get(url,{id:_id},function(callback){
+                if( callback.code == 200 ){
+                    _form.find('[name="title"]').attr('value',callback.data.title);
+                    _form.find('[name="value"]').attr('value',callback.data.value);
+                    _form.find('[name="order"]').attr('value',callback.data.order);
+                    _form.find('[name="id"]').attr('value',callback.data.id);
+                    _form.find('[name="pid"]').attr('value',callback.data.pid);
+                    _form.find('[name="type"]').attr('value',callback.data.type);
+                    showModel('ed')
+                }else {
+                    showAlert(403,'没有找到对应的导航数据');
+                }
+            })
+        })
+    })
+</script>
+{/block}

@@ -1,0 +1,70 @@
+{extend name="common/index"/}
+{block name="title"}{/block}
+{block name="top_right"}
+{include file="common/user_status"}
+{/block}
+{block name="article_header"}
+    <div class="am-article-bar">
+        <div class="am-container">
+            <h1 class="am-article-title">{$article.subject}</h1>
+            <div class="am-article-tag am-text-sm am-text-note">
+                {$article.keywords|tags}
+                <a href="/u/{$article.uid}" class="am-margin-right-sm am-margin-left" rel="nofollow">
+                    <b>{$article->user->username}</b>
+                </a>发布于 {$article.dateline|get_friendly_time}
+            </div>
+            <div class="am-article-remend">
+                <div class="am-margin-bottom-sm">
+                    <span class="am-btn am-btn-xs am-radius am-btn-success am-icon-thumbs-up"> 推荐</span>
+                    <span class="am-article-remend-item">0</span> 推荐
+                </div>
+                <div>
+                    <span class="am-btn am-btn-xs am-radius am-btn-default am-icon-star"> 收藏</span>
+                    <span class="am-article-remend-item">0</span> 收藏,
+                    <span class="am-article-remend-item">{$article.views}</span>浏览
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="content"}
+<div class="am-g">
+    <div class="am-u-sm-9">
+        <article class="am-article">
+            <div class="am-article-bd">
+                {$article.message|htmlspecialchars_decode}
+            </div>
+        </article>
+    </div>
+    <div class="am-u-sm-3">
+        <section class="am-panel am-border am-radius">
+            <div class="am-panel-bd am-text-sm">
+                <div class="am-user-panel">
+                    <a href="{$article.uid|reurl='u'}" rel="nofollow" target="_blank">
+                        <img src="{$article->avatar->avatar}" width="40" height="40" class="am-round" alt="{$article->user->username}">
+                        <span class="am-text-lg">{$article->user->username}</span>
+                    </a>
+                    <span class="am-btn am-btn-success am-btn-xs am-radius am-icon-plus" onclick="followUser({$article->uid})"> 关注</span>
+                </div>
+                <div class="am-border-bottom am-padding-bottom-xs am-text-default am-margin-top-sm">他的动态</div>
+                <ul class="am-list am-list-hot">
+                    {volist name="dynamic" id="vo"}
+                    <li>
+                        <a href="{$vo.id|reurl='blog'}" class="am-text-truncate" title="{$vo.subject}"><span class="am-list-icon">{$vo.subject|mbs='1'}</span>{$vo.subject}</a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </section>
+
+        <div class="am-border-bottom am-padding-bottom-xs">热门评论</div>
+        <ul class="am-list am-list-hot">
+            {volist name="comments" id="vo"}
+            <li>
+                <a href="{$vo.id|reurl='blog'}" class="am-text-truncate" title="{$vo.subject}"><span class="am-list-icon">{$vo.subject|mbs='1'}</span>{$vo.subject}</a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+{/block}

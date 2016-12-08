@@ -1,0 +1,44 @@
+{extend name="common/index"/}
+{block name="title"}{notempty name="cateinfo"}{$cateinfo.title} - {/notempty}{$channel.title} - {/block}
+{block name="top_right"}
+{include file="common/user_status"}
+{/block}
+{block name="content"}
+<section class="am-panel am-panel-default am-panel-category">
+    <header class="am-panel-hd">
+        <h3 class="am-panel-title"><span class="am-icon-th-large am-text-primary"></span> {$channel.title}分类</h3>
+    </header>
+    <div class="am-panel-bd">
+        <a href="{$channel.alias|reurl='ca'}" class="am-btn am-btn-sm">全部</a>
+        {volist name="category" id="vo"}
+        <a href="{$channel.alias|reurl='ca'}/{$vo.id}.html" class="am-btn am-btn-sm" data-pid="{$vo.pid}" data-id="{$vo.id}">{$vo.title}</a>
+        {/volist}
+    </div>
+</section>
+<div class="am-list-material">
+    {volist name="list" id="vo"}
+        <section class="am-panel am-panel-default am-item">
+            <div class="am-panel-bd">
+                <a href="{$vo.id|reurl='pa'}" title="{$vo.subject}"><img src="{$vo.thumb}" width="225" alt="{$vo.subject}"></a>
+                <div class="am-text-sm am-text-center am-padding-top-xs">
+                    <a href="{$vo.id|reurl='pa'}" title="{$vo.subject}" class="am-text-truncate">{$vo.subject}</a>
+                </div>
+            </div>
+            <footer class="am-panel-footer">
+                <ul class="am-avg-sm-2 am-text-center am-text-sm">
+                    <li><a href="javascript:;" class="am-icon-star"> 收藏</a></li>
+                    <li><a href="{$vo.id|reurl='dl'}" class="am-icon-download"> 下载</a></li>
+                </ul>
+            </footer>
+        </section>
+    {/volist}
+</div>
+{/block}
+{block name="js"}
+<script src="__j__/masonry.pkgd.min.js"></script>
+<script>
+    $('.am-list-material').masonry({
+        itemSelector: '.am-item'
+    });
+</script>
+{/block}

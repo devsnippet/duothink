@@ -1,0 +1,81 @@
+{extend name="base/index"/}
+{block name="content"}
+    <div class="am-legend"><span class="am-icon-photo"></span> 首页幻灯片</div>
+    <div class="">
+        <a href="{:url('add_slider')}" class="am-btn am-btn-success am-btn-xs am-radius am-icon-plus"> 添加幻灯片</a>
+    </div>
+    <table class="am-table am-table-hover am-text-sm">
+        <thead>
+        <tr>
+            <th width="60">id</th>
+            <th width="150">图片</th>
+            <th>标题</th>
+            <th>链接</th>
+            <th width="180">管理</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="slider" id="vo"}
+
+        <tr>
+            <td>{$vo.id}</td>
+            <td><img src="{$vo.thumb}" alt="" width="120"></td>
+            <td>{$vo.title}</td>
+            <td>{$vo.url}</td>
+            <td>
+                <div class="am-btn-group am-btn-group-xs">
+                    <a href="{:url('ed_slider')}?id={$vo.id}" class="am-btn am-btn-default am-icon-pencil"> 编辑</a>
+                    <button type="button" class="am-btn am-btn-default am-icon-trash-o" data-del="{id:{$vo.id},url:'{:url('del_slider')}',target:'del-slider'}"> 删除</button>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <hr>
+    <div class="am-legend"><span class="am-icon-th-large"></span> 首页分类导航</div>
+    <div class="">
+        <a href="{:url('add_btn_category')}" class="am-btn am-btn-success am-btn-xs am-radius am-icon-plus"> 添加导航</a>
+    </div>
+    <table class="am-table am-table-hover am-text-sm">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>图标</th>
+            <th>名称</th>
+            <th>链接</th>
+            <th>管理</th>
+        </tr>
+        </thead>
+        <tbody>
+            {volist name="category" id="vo"}
+            <tr>
+                <td>{$vo.id}</td>
+                <td><img src="{$vo.thumb}" alt="" width="32"></td>
+                <td>{$vo.title}</td>
+                <td>http://{:request()->host()}{$vo.url}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <button type="button" class="am-btn am-btn-default">编辑</button>
+                        <button type="button" class="am-btn am-btn-default">删除</button>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+{/block}
+{block name="modal"}
+<div class="am-modal am-modal-confirm" tabindex="-1" id="del-slider">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">幻灯片删除确认</div>
+        <div class="am-modal-bd">
+            你将删除选中幻灯片，此删除不可逆，请谨慎操作！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,16 @@
+<form action="{:url('create_new_media_insert')}" method="POST" role="form" class="am-form">
+    <input type="hidden" name="sub_id" value="{:guid()}">
+    <legend>图文内容</legend>
+    <div class="am-form-group">
+        <input type="text" name="subject" id="subject" placeholder="输入你的图文标题">
+    </div>
+    <div class="am-form-group">
+        <label for="thumb">缩略图 <small class="am-text-note">图片大小（900x500px）</small></label>
+        {:puploader_template()}
+    </div>
+    <div class="am-form-group">
+        <label for="message">图文内容</label>
+        {:editorTextarea('message',600)}
+    </div>
+    <button type="button" id="create-media" class="am-btn am-btn-primary am-btn-sm am-radius am-icon-check"> 提交保存</button>
+</form>

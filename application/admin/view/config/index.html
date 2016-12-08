@@ -1,0 +1,95 @@
+{extend name="base/index"/}
+{block name="content"}
+<form action="{:url('index')}" method="POST" role="form" class="am-form am-form-horizontal am-text-sm" id="config">
+    <input type="hidden" name="id" value="{$config.id}">
+    <legend class="am-text-default"><span class="am-icon-info-circle"></span> 基础信息</legend>
+    <div class="am-form-group">
+        <label for="sitename" class="am-form-label am-u-sm-2">站点标题</label>
+        <div class="am-u-sm-5 am-u-end">
+            <input type="text" id="sitename" name="sitename" class="am-input-sm" value="{$config.sitename}" placeholder="输入站点名称">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="shortname" class="am-form-label am-u-sm-2">站点短标题</label>
+        <div class="am-u-sm-2 am-u-end">
+            <input type="text" id="shortname" name="shortname" class="am-input-sm" value="{$config.shortname}" placeholder="输入站点短名称">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="icp" class="am-form-label am-u-sm-2">ICP备案号</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="icp" name="icp" class="am-input-sm" value="{$config.icp}" placeholder="输入ICP备案号">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="wcp" class="am-form-label am-u-sm-2">公安网备</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="wcp" name="wcp" class="am-input-sm" value="{$config.wcp}" placeholder="输入公安网备案号">
+        </div>
+    </div>
+    <legend class="am-text-default"><span class="am-icon-edge"></span> SEO信息</legend>
+    <div class="am-form-group">
+        <label for="keywords" class="am-form-label am-u-sm-2">关键字</label>
+        <div class="am-u-sm-5 am-u-end">
+            <input type="text" id="keywords" name="keywords" value="{$config.keywords}" class="am-input-sm" placeholder="关键字多个关键字用英文逗号隔开">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="description" class="am-form-label am-u-sm-2">站点描述</label>
+        <div class="am-u-sm-5 am-u-end">
+            <textarea name="description" id="description" rows="4" class="am-input-sm">{$config.description}</textarea>
+        </div>
+    </div>
+    <legend class="am-text-default"><span class="am-icon-user"></span> 客服信息</legend>
+    <div class="am-form-group">
+        <label for="linkman" class="am-form-label am-u-sm-2">联系人</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="linkman" name="linkman" value="{$config.linkman}" class="am-input-sm" placeholder="输入网站负责人">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="mobile" class="am-form-label am-u-sm-2">手机</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="mobile" name="mobile" value="{$config.mobile}" class="am-input-sm" placeholder="输入联系手机号码">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="tell" class="am-form-label am-u-sm-2">固定电话</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="tell" name="tell" value="{$config.tell}" class="am-input-sm" placeholder="输入固定电话如，xxxx-xxxxxx">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="qq" class="am-form-label am-u-sm-2">qq</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="qq" name="qq" class="am-input-sm" value="{$config.qq}" placeholder="输入网站负责人联系qq">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="weixin" class="am-form-label am-u-sm-2">微信</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="weixin" name="weixin" class="am-input-sm" value="{$config.weixin}" placeholder="输入网站负责人微信">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="email" class="am-form-label am-u-sm-2">邮箱</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" id="email" name="email" class="am-input-sm" value="{$config.email}" placeholder="输入网站负责人邮箱">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="address" class="am-form-label am-u-sm-2">联系地址</label>
+        <div class="am-u-sm-5 am-u-end">
+            <input type="text" id="address" name="address" class="am-input-sm" value="{$config.address}" placeholder="联系详细地址">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <div class="am-u-sm-2">&nbsp;</div>
+        <div class="am-u-sm-10">
+            <button type="button" data-ajax-submit="#config" class="am-btn am-btn-primary am-radius am-icon-check">提交保存</button>
+        </div>
+    </div>
+
+</form>
+{/block}
+{block name="js"}{/block}

@@ -1,0 +1,65 @@
+{extend name="base/index"/}
+{block name="content"}
+<ul class="am-margin-bottom am-avg-sm-5 am-index-counts-btn am-text-sm">
+    <li>
+        <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+            待付款订单 <span class="am-badge am-round am-badge-danger">66</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+            待处理订单 <span class="am-badge am-round am-badge-primary">0</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+            配送中订单 <span class="am-badge am-round am-badge-success">0</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+            已完成订单 <span class="am-badge am-round am-badge-warning">99+</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="am-btn am-btn-block am-btn-default">
+            商品数量 <span class="am-badge am-round am-badge-primary">5</span>
+        </a>
+    </li>
+</ul>
+<div class="am-legend"><span class="am-icon-bars"></span> 订单列表</div>
+<section class="am-panel am-panel-default am-radius am-text-sm">
+    <header class="am-panel-hd am-padding-bottom-sm">
+        <div class="am-fr am-btn-group-xs">
+            <span class="am-btn am-btn-primary am-icon-send am-radius"> 派单</span>
+            <span class="am-btn am-btn-success am-icon-check am-radius"> 完成</span>
+            <span class="am-btn am-btn-warning am-icon-ban am-radius"> 取消</span>
+            <span class="am-btn am-btn-danger am-icon-trash-o am-radius"> 删除</span>
+        </div>
+        <span class="am-icon-indent"></span> 订单编号：{:orderNo()}
+    </header>
+    <div class="am-panel-bd">
+        <table class="am-table am-table-hover">
+            <thead>
+            <tr>
+                <td>详情</td>
+                <td width="20%">客户</td>
+                <td width="20%">快递员</td>
+                <td width="10%">状态</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="am-panel-footer">
+        订单耗时：
+    </footer>
+</section>
+{/block}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{block name="title"}{/block}{$config.sitename}</title>
+    {block name="seo"}{/block}
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="max-age=600"/>
+    <meta http-equiv="Cache-Version" content="{:vcs(1)}"/>
+    <meta http-equiv="Spm" content="{:spm()}"/>
+    <link rel="icon" type="image/png" href="__i__/favicon.png{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.min.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.theme.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/app.css{:vcs()}">
+    {block name="css"}{/block}
+</head>
+<body>
+<header class="am-header">
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-sm-2">
+                <div class="am-topbar-brand"><img src="__i__/logo.png" alt=""></div>
+            </div>
+            <div class="am-u-sm-5 am-padding-0">
+                <ul class="am-nav am-nav-pills">
+                    <li><a href="http://{:request()->host()}"> 首页</a></li>
+                    {volist name="navigation" id="vo"}
+                    <li {eq name="vo.value" value="$action"}class="am-active"{/eq}><a href="http://{:request()->host()}/{$vo.value}">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="am-u-sm-3 am-text-right am-user-status">
+                <form action="/search" method="POST" role="form" class="am-form am-header-search">
+                    <input type="text" id="" class="am-radius am-border-0" placeholder="关键字搜索">
+                    <button type="submit" class="am-icon-search"></button>
+                </form>
+            </div>
+            <div class="am-u-sm-2 am-text-right am-user-status">
+               {block name="top_right"}{/block}
+            </div>
+        </div>
+    </div>
+</header>
+{block name="article_header"}{/block}
+<div class="am-container am-padding-top">
+    {block name="content"}{/block}
+</div>
+{block name="modal"}{/block}
+
+<div class="am-footer">
+    <div class="am-container">
+
+    </div>
+    <div class="am-footer-copy am-text-note">
+        &copy;2016 <a href="http://www.pe666.net">www.pe666.net</a> -
+        ICP备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">滇ICP备13003597号-12 </a> -
+        公安网备：<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=53080202000233" rel="nofollow"><img src="__i__/wjtb.png" style="vertical-align: top"/>滇公网安备 53080202000233号</a>
+        <div>
+            <a href="http://www.yn.cyberpolice.cn/" target="_blank" rel="nofollow"><img src="__i__/g1.png" width="40" alt=""></a>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=53080202000233" target="_blank" rel="nofollow"><img src="__i__/BA.png" width="40" alt=""></a>
+            <a href="http://www.yn.cyberpolice.cn/" target="_blank" rel="nofollow"><img src="__i__/g2.png" width="40" alt=""></a>
+        </div>
+    </div>
+</div>
+<div class="alert-group">
+    <div class="am-alert am-alert-success" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+    <div class="am-alert am-alert-danger" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+    <div class="am-alert am-alert-warning" data-am-alert="">
+        <button type="button" class="am-close">&times;</button>
+        <p></p>
+    </div>
+</div>
+<div class="am-scroll-top" data-am-smooth-scroll>
+    <span class="am-icon-btn am-icon-arrow-up"></span>
+</div>
+<script src="__j__/jquery.min.js{:vcs()}"></script>
+<script src="__j__/amazeui.min.js{:vcs()}"></script>
+<script>var spm='{:spm()}',vcs='{:vcs()}';</script>
+<script src="__j__/common.min.js{:vcs()}"></script>
+<script src="__j__/app.min.js{:vcs()}"></script>
+{block name="js"}{/block}
+</body>
+</html>

@@ -1,0 +1,7 @@
+{extend name="base/index"/}
+{block name="content"}
+<div class="am-legend"><span class="am-icon-trello"></span> 路由设置</div>
+{volist name="ro" id="vo"}
+<pre class="am-radius am-padding-xs">'{$vo.key}' => '{$vo.value}'</pre>
+{/volist}
+{/block}

@@ -1,0 +1,65 @@
+{extend name="base/index"/}
+{block name="content"}
+<form action="{:url('api')}" method="POST" role="form" class="am-form am-form-horizontal" id="weixin-config">
+    <input type="hidden" name="id" value="{$api.id}">
+    <div class="am-legend"><span class="am-icon-tasks"></span> 微信接口配置</div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">微信公众号名称</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" name="title" value="{$api.title}">
+            <div class="am-text-note am-margin-top-xs am-text-xs">必须为英文或数字，长度为3-32字符。</div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">微信公众号</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" name="wechat_no" value="{$api.wechat_no}">
+            <div class="am-text-note am-margin-top-xs am-text-xs">必须为英文或数字，长度为3-32字符。</div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">接口地址(服务器地址)</label>
+        <div class="am-u-sm-5 am-u-end">
+            <input type="text" name="url" value="http://{:request()->host()}/common/weixin/api/uid/{:uid()}.html">
+            <p class="am-text-xs am-margin-0 am-text-note am-padding-top-xs">启用并设置服务器配置后，用户发给公众号的消息以及开发者需要的事件推送，将被微信转发到该URL中</p>
+            <p class="am-text-xs am-margin-0 am-text-note">必须以http://或https://开头，分别支持80端口和443端口。</p>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">Token(令牌)</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" name="token" value="{$api.token}">
+            <div class="am-text-note am-margin-top-xs am-text-xs">必须为英文或数字，长度为3-32字符。</div>
+        </div>
+    </div>
+    <div class="am-legend"><span class="am-icon-info-circle"></span> 开发者ID</div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">AppID(应用ID)</label>
+        <div class="am-u-sm-3 am-u-end">
+            <input type="text" name="appid" value="{$api.appid}" placeholder="AppID(应用ID)" required>
+            <div class="am-text-xs am-margin-top-xs am-text-note">开发选项中，AppID</div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">AppSecret(应用密钥)</label>
+        <div class="am-u-sm-4 am-u-end">
+            <input type="text" name="appsecret" value="{$api.appsecret}" placeholder="AppSecret(应用密钥)" required>
+            <div class="am-text-note am-text-xs am-margin-top-xs">AppSecret(应用密钥)</div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">EncodingAESKey(消息加解密密钥)</label>
+        <div class="am-u-sm-4 am-u-end">
+            <input type="text" name="encodingaeskey" value="{$api.encodingaeskey}" placeholder="EncodingAESKey(消息加解密密钥)"
+                   required>
+            <div class="am-text-xs am-text-note am-margin-top-xs">消息加密密钥由43位字符组成，可随机修改，字符范围为A-Z，a-z，0-9。</div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-form-label am-u-sm-2">&nbsp;</label>
+        <div class="am-u-sm-3 am-u-end">
+            <button type="button" data-ajax-submit="#weixin-config" class="am-btn am-btn-primary am-btn-sm am-radius am-icon-check"> 提交保存</button>
+        </div>
+    </div>
+</form>
+{/block}

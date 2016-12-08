@@ -1,0 +1,73 @@
+{extend name="common/index"/}
+{block name="seo"}<meta name="keywords" content="{$config.keywords}">
+    <meta name="description" content="{$config.description}">{/block}
+{block name="searchbar"}
+{/block}
+{block name="top_right"}
+{include file="common/user_status"}
+{/block}
+{block name="content"}
+<div class="am-g">
+    <div class="am-u-sm-3">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">
+                    <span class="am-icon-bars am-text-primary"></span> 最近更新 <small>/ New</small>
+                </h3>
+            </header>
+            <div class="am-panel-bd">
+                面板内容
+            </div>
+        </section>
+
+    </div>
+    <div class="am-u-sm-6 am-padding-0">
+        <section class="am-panel">
+            <div class="am-panel-bd am-padding-xs">
+                <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}'>
+                    <ul class="am-slides">
+                        <li><img src="__i__/sq.jpg"/></li>
+                        <li><img src="__i__/sq223.jpg"/></li>
+                        <li><img src="__i__/sqr.jpg"/></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div class="am-u-sm-3">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">
+                    <span class="am-icon-fire am-text-danger"></span> 热门精选 <small> / Selected </small>
+                </h3>
+            </header>
+            <div class="am-panel-bd">
+                面板内容
+            </div>
+        </section>
+    </div>
+</div>
+<div class="am-g">
+    <div class="am-u-sm-9 am-padding-right-0">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">面板标题</h3>
+            </header>
+            <div class="am-panel-bd">
+                面板内容
+            </div>
+        </section>
+    </div>
+    <div class="am-u-sm-3">
+        <section class="am-panel am-panel-default">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">分类推荐</h3>
+            </header>
+            <div class="am-panel-bd">
+                面板内容
+            </div>
+        </section>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{$config.shortname} - 后台管理中心 - powered by duothink!</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="__i__/favicon.png{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.min.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/admin.css{:vcs()}">
+    <link rel="stylesheet" href="__c__/amazeui.theme.css{:vcs()}">
+    {block name="css"}{/block}
+</head>
+<body>
+<header class="am-topbar">
+    <h1 class="am-topbar-brand">
+        <a href="{:url('index/index')}"><img src="__i__/logo.png"></a>
+    </h1>
+    <ul class="am-nav am-nav-pills am-fr am-margin-top-sm am-margin-right-sm am-text-sm">
+        <li><a href="{:url('index/index')}" class="am-icon-home"> 管理首页</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a href="javascript:void(0);" class="am-icon-plus am-dropdown-toggle" data-am-dropdown-toggle> 新增</a>
+            <ul class="am-dropdown-content">
+                <li><a href="" class="am-icon-plus"> 新增文章</a></li>
+                <li><a href="" class="am-icon-plus"> 添加产品</a></li>
+                <li><a href="" class="am-icon-plus"> 添加商品</a></li>
+                <li><a href="" class="am-icon-plus"> 添加用户</a></li>
+            </ul>
+        </li>
+        <li><a href="/" target="_blank" class="am-icon-desktop"> 网站首页</a></li>
+        <li><a href="javascript:clear_cache_log_temp();" class="am-icon-refresh"> 缓存</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a href="javascript:void(0);" class="am-icon-user am-dropdown-toggle" data-am-dropdown-toggle>
+                {empty name="user.username"}{$user.mobile}{/empty} {$user.username},欢迎回来！
+                <span class="am-icon-chevron-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+                <li><a href="" class="am-icon-cog"> 个人信息</a></li>
+                <li><a href="" class="am-icon-lock"> 修改密码</a></li>
+                <li><a href="" class="am-icon-power-off am-text-danger"> 安全退出</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<aside class="aside am-spm">
+    <ul class="am-nav am-border-bottom am-padding-top-xs am-padding-bottom-xs am-margin-bottom-sm">
+        <li><a href="{:url('posts/index')}"><span class="am-icon-fw am-icon-plus"></span> 新增内容</a></li>
+        <li><a href="{:url('message/index')}"><span class="am-icon-fw am-icon-bell-o"></span> 消息提示 <span class="am-badge am-badge-danger am-round">0</span></a></li>
+    </ul>
+
+    <ul class="am-nav am-margin-top-sm">
+        {volist name="left_menu" id="vo"}
+            <li><a href="{$vo.name|url}"><span class="am-icon-fw am-icon-{$vo.icon}"></span> {$vo.title}</a></li>
+        {/volist}
+
+    </ul>
+</aside>
+{neq name="rqst.controller" value="Index"}
+<div class="am-breadcrumb-bar">
+    <ul class="am-nav am-nav-pills am-spm">
+        <span class="am-fr am-icon-th-large am-text-primary am-change-style"></span>
+        {notempty name="$now_auth_rule.0.name"}
+        <li {eq name="rqst.name" value="$now_auth_rule.0.name"}class="am-active"{/eq}>
+        <a href="{$now_auth_rule.0.name|url}">{$now_auth_rule.0.title}</a>
+        </li>
+        {/notempty}
+        {volist name="sub_menu" id="vo"}
+        <li {eq name="rqst.name" value="$vo.name"}class="am-active"{/eq}><a href="{$vo.name|url}">{$vo.title}</a></li>
+        {/volist}
+    </ul>
+</div>
+{/neq}
+<section class="main" {eq name="rqst.controller" value="Index"}style="top:60px;"{/eq}>
+    {block name="content"}{/block}
+</section>
+{block name="modal"}{/block}
+<div class="alert-group">
+    <div class="am-alert-marks"></div>
+    <div class="am-alert am-alert-success am-animation-scale-up" data-am-alert=""><p></p></div>
+    <div class="am-alert am-alert-danger am-animation-scale-up" data-am-alert=""><p></p></div>
+    <div class="am-alert am-alert-warning am-animation-scale-up" data-am-alert=""><p></p></div>
+</div>
+<script src="__j__/jquery.min.js{:vcs()}"></script>
+<script src="__j__/amazeui.min.js{:vcs()}"></script>
+<script>var spm='{:spm()}',vcs='{:vcs()}';</script>
+<script src="__j__/common.min.js{:vcs()}"></script>
+<script src="__j__/admin.extend.min.js{:vcs()}"></script>
+{block name="js"}{/block}
+</body>
+</html>

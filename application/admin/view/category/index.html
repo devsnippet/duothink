@@ -1,0 +1,113 @@
+{extend name="base/index"/}
+{block name="content"}
+<div class="am-legend"><span class="am-icon-th"></span> 分类列表</div>
+<div class="am-margin-bottom">
+    <div class="am-btn-xs am-btn-success am-btn am-radius am-icon-plus" onclick="showModel('add')"> 添加分类</div>
+</div>
+<table class="am-table am-table-hover am-table-striped am-text-sm">
+    <thead>
+    <tr>
+        <th width="60">ID</th>
+        <th>名称</th>
+        <th>类型</th>
+        <th width="240">管理</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name="category" id="vo"}
+    <tr>
+        <td>{$vo.id}</td>
+        <td><span class="am-level-tree-{$vo.level}"></span>{$vo.title}</td>
+        <td>{$vo.type}</td>
+        <td>
+            <div class="am-btn-group am-btn-group-xs">
+                <button type="button" data-ed-category="{$vo.id}" class="am-btn am-btn-default am-icon-pencil"> 编辑</button>
+                <button type="button" data-pid="{id:{$vo.id},target:'add'}" class="am-btn am-btn-default am-icon-level-down"> 子分类</button>
+                <button type="button" data-del="{id:{$vo.id},target:'del',url:'{:url('del')}'}" class="am-btn am-btn-default am-icon-trash-o"> 删除</button>
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    </tbody>
+</table>
+{/block}
+{block name="modal"}
+<div class="am-modal am-modal-confirm" tabindex="-1" id="add">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">添加分类</div>
+        <div class="am-modal-bd">
+            <form action="{:url('add')}" method="POST" role="form" class="am-form am-form-horizontal" id="add-form">
+                <input type="hidden" name="pid" value="0">
+                <div class="am-form-group">
+                    <label for="title" class="am-form-label am-u-sm-2">名称</label>
+                    <div class="am-u-sm-10 am-u-end"><input type="text" id="title" name="title" placeholder="输入分类名称"></div>
+                </div>
+                <div class="am-form-group">
+                    <label for="type" class="am-form-label am-u-sm-2">栏目</label>
+                    <div class="am-u-sm-10 am-u-end">
+                        <select name="type" id="type">
+                            {volist name="channel" id="vo"}
+                            <option value="{$vo.id}">{$vo.title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="order" class="am-form-label am-u-sm-2">排序</label>
+                    <div class="am-u-sm-5 am-u-end"><input type="text" id="order" name="order" placeholder="排序" value="0"></div>
+                </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-ajax-submit="#add-form">确定</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-confirm" tabindex="-1" id="ed-category">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">编辑分类</div>
+        <div class="am-modal-bd">
+            <form action="{:url('ed')}" method="POST" role="form" class="am-form am-form-horizontal" id="ed-form">
+                <input type="hidden" name="id" value="">
+                <div class="am-form-group">
+                    <label for="title" class="am-form-label am-u-sm-2">名称</label>
+                    <div class="am-u-sm-10 am-u-end"><input type="text" id="title" name="title" placeholder="输入分类名称"></div>
+                </div>
+                <div class="am-form-group">
+                    <label for="type" class="am-form-label am-u-sm-2">栏目</label>
+                    <div class="am-u-sm-10 am-u-end">
+                        <select name="type" id="type">
+                            {volist name="channel" id="vo"}
+                            <option value="{$vo.id}">{$vo.title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="order" class="am-form-label am-u-sm-2">排序</label>
+                    <div class="am-u-sm-5 am-u-end"><input type="text" id="order" name="order" placeholder="排序" value="0"></div>
+                </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-ajax-submit="#ed-form">确定</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-confirm" tabindex="-1" id="del">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">删除确认</div>
+        <div class="am-modal-bd">
+            删除二次确认，此操作不可逆，请谨慎操作！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+{/block}

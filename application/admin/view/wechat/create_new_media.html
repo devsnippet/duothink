@@ -1,0 +1,50 @@
+{extend name="base/index"/}
+{block name="css"}{:editorCSS()}{/block}
+{block name="function"}onbeforeunload="checkLeave()"{/block}
+{block name="content"}
+    <div id="svae-status" value="none"></div>
+    <div class="am-legend"><span class="am-icon-plus"></span> 新建多图文</div>
+    <div class="am-widget-wechat-media-panel am-cf am-text-sm">
+        <div class="am-u-sm-3">
+            <section class="am-panel am-panel-default">
+                <div class="am-panel-bd">
+                    <div class="am-media-preview am-margin-bottom-sm">
+                        <div class="media-item" id="1"></div>
+                    </div>
+                    <div onclick="new_media_item()" class="am-btn am-btn-default am-icon-plus am-btn-block am-btn-sm am-border-0"> 添加图文</div>
+                </div>
+            </section>
+        </div>
+        <div class="am-u-sm-9">
+            <form action="{:url('create_new_media_insert')}" method="POST" role="form" class="am-form">
+                <input type="hidden" name="media_id" value="{:input('get.openid')}">
+                <input type="hidden" name="item_id" value="{:guid()}">
+                <legend>图文内容</legend>
+                <div class="am-form-group">
+                    <input type="text" name="subject" id="subject" placeholder="输入你的图文标题">
+                </div>
+                <div class="am-form-group">
+                    <label for="thumb">缩略图 <small class="am-text-note">图片大小（900x500px）</small></label>
+                    <div class="am-g">
+                        <div class="am-u-sm-5 am-padding-left-0 am-u-end">
+                            {:puploader_template()}
+                        </div>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="message">图文内容</label>
+                    {:editorTextarea('message',800)}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="am-wechat-media-bar">
+        <button type="button" id="create-media" class="am-btn am-btn-success am-btn-sm am-icon-check"> 保存</button>
+        <button type="button" id="create-media-all" class="am-btn am-btn-primary am-btn-sm am-icon-check"> 保存全部图文</button>
+    </div>
+{/block}
+{block name="js"}
+{:editorJS()}
+{:puploader(false)}
+{js file="__j__/wechat.media.min.js"/}
+{/block}
