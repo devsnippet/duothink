@@ -172,20 +172,6 @@
             return !denied;
         });
 
-        uploader.on('dialogOpen', function () {
-            console.log('here');
-        });
-
-        // uploader.on('filesQueued', function() {
-        //     uploader.sort(function( a, b ) {
-        //         if ( a.name < b.name )
-        //           return -1;
-        //         if ( a.name > b.name )
-        //           return 1;
-        //         return 0;
-        //     });
-        // });
-
         // 添加“添加文件”的按钮，
         uploader.addButton({
             id: '#filePicker2',

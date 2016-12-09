@@ -1,110 +1,117 @@
 {extend name="base/index"/}
-{block name="css"}<link rel="stylesheet" href="/static/editor/css/wangEditor.min.css">
-<link rel="stylesheet" href="/static/webuploader/webuploader.css{:vcs()}">{/block}
+{block name="css"}
+<link rel="stylesheet" href="/static/editor/css/wangEditor.min.css">
+<link rel="stylesheet" href="/static/webuploader/webuploader.css{:vcs()}">
+{/block}
 {block name="content"}
-<form action="{:url('article')}" method="POST" role="form" class="am-form am-text-sm am-form-horizontal" id="article">
-    <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
-        <ul class="am-tabs-nav am-nav am-nav-tabs">
-            <li class="am-active"><a href="javascript: void(0)">内容编辑</a></li>
-            <li><a href="javascript: void(0)">添加附件</a></li>
-        </ul>
-
-        <div class="am-tabs-bd">
-            <div class="am-tab-panel am-active">
-                <div class="am-form-group">
-                    <label for="subject" class="am-form-label am-u-sm-1">标题</label>
-                    <div class="am-u-sm-7 am-u-end">
-                        <input type="text" name="subject" id="subject" class="am-input-sm" placeholder="输入标题">
-                    </div>
-                </div>
-                <div class="am-form-group">
-                    <label for="channel_id" class="am-u-sm-1 am-form-label">栏目</label>
-                    <div class="am-u-sm-2 am-u-end">
-                        <select name="channel_id" id="channel_id" class="am-input-sm">
-                            <option value="">请选择栏目</option>
-                            {volist name="channel" id="vo"}
-                            <option value="{$vo.id}">{eq name="vo.level" value="2"}&nbsp;&nbsp;|--{/eq} {$vo.title}</option>
-                            {/volist}
-                        </select>
-                    </div>
-                </div>
-                <div class="am-form-group">
-                    <label for="catid" class="am-u-sm-1 am-form-label">分类</label>
-                    <div class="am-u-sm-2 am-u-end">
-                        <select name="catid" id="catid" class="am-input-sm">
-                            <option value="">请选择分类</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="am-form-group">
-                    <label for="keywords" class="am-form-label am-u-sm-1">关键字</label>
-                    <div class="am-u-sm-7 am-u-end">
-                        <input type="text" name="keywords" id="keywords" class="am-input-sm" placeholder="自定义关键字，如果不填默认提取">
-                    </div>
-                </div>
-                <div class="am-form-group">
-                    <label for="message" class="am-form-label am-u-sm-1">正文</label>
-                    <div class="am-u-sm-10 am-u-end">
-                        <textarea name="message" id="message" style="height:400px;max-height:700px;"></textarea>
-                    </div>
-                </div>
+<div class="am-channel-list">
+    <ul class="am-list">
+        <li class="am-list-header">选择发布栏目</li>
+        {volist name="channel" id="vo"}
+            <li {eq name="cid" value="$vo.id"}class="am-active"{/eq}><a href="?cid={$vo.id}">{$vo.title}</a></li>
+        {/volist}
+    </ul>
+</div>
+<form action="{:url('article')}" method="POST" role="form" class="am-form am-text-sm am-posts-form" id="article">
+    <input type="hidden" name="cid" value="{$cid}">
+    <div class="am-form-group">
+        <label for="subject" class="am-form-label">标题</label>
+        <div class="am-g">
+            <div class="am-u-sm-5 am-padding-0">
+                <input type="text" name="subject" id="subject" class="am-input-sm" placeholder="输入标题">
             </div>
-            <div class="am-tab-panel">
-                <div class="am-form-group">
-                    <label for="keywords" class="am-form-label am-u-sm-1">文章附件</label>
-                    <div class="am-u-sm-7 am-u-end">
-                        <div id="wrapper">
-                            <div id="container">
-                                <div id="uploader">
-                                    <div class="queueList">
-                                        <div id="dndArea" class="placeholder">
-                                            <div id="filePicker"></div>
-                                            <p>或将附件zip包拖到这里</p>
-                                        </div>
-                                    </div>
-                                    <div class="statusBar" style="display:none;">
-                                        <div class="progress">
-                                            <span class="text">0%</span>
-                                            <span class="percentage"></span>
-                                        </div><div class="info"></div>
-                                        <div class="btns">
-                                            <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="am-u-sm-5 am-padding-0 am-u-end" style="margin-left: -1px;">
+                <div class="am-btn-group am-btn-group-sm am-article-property">
+                    <div class="am-btn am-icon-th-large am-widget-color" data-color>
+                        颜色<input type="hidden" name="color" value="#444">
+                        <ul class="am-avg-sm-3">
+                            <li data-color-value="#444"><span class="am-color-default"></span></li>
+                            <li data-color-value="#2a8c70"><span class="am-color-main"></span></li>
+                            <li data-color-value="#009ed2"><span class="am-color-primary"></span></li>
+                            <li data-color-value="#5eb95e"><span class="am-color-success"></span></li>
+                            <li data-color-value="#F37B1D"><span class="am-color-warning"></span></li>
+                            <li data-color-value="#dd514c"><span class="am-color-danger"></span></li>
+                        </ul>
                     </div>
+                    <div class="am-btn am-btn-default am-icon-thumbs-up" data-remend>
+                        推荐<input type="hidden" name="remend" value="0"></div>
+                    <div class="am-btn am-btn-default am-icon-arrow-up" data-ordertop>
+                        置顶<input type="hidden" name="ordertop" value="0"></div>
+                    <div class="am-btn am-btn-default am-icon-image" data-slider>
+                        幻灯片<input type="hidden" name="slider" value="0"></div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="am-form-group">
+        <label for="catid" class="am-form-label">分类</label>
+        <div class="">
+            <input type="hidden" name="catid" value="">
+            <div class="am-btn-group am-btn-group-sm" id="catid">
+                {volist name="category" id="vo"}
+                    <span class="am-btn am-btn-default" data-catid="{$vo.id}">{$vo.title}</span>
+                {/volist}
+            </div>
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label for="catid" class="am-form-label">关键字</label>
+        <input type="text" name="keywords" value="" class="am-input-sm">
+    </div>
+    <div class="am-form-group">
+        <label for="message" class="am-form-label">正文</label>
+        <textarea name="message" id="message" style="height:400px;max-height:700px;"></textarea>
+    </div>
 
     <div class="am-form-group">
-        <label class="am-u-sm-1 am-u-sm-1">&nbsp;</label>
-        <div class="am-u-sm-11">
-            <button type="button" data-ajax-submit="#article" class="am-btn am-btn-sm am-btn-primary am-icon-check"> 立即发布</button>
-        </div>
+        <button type="button" data-ajax-submit="#article" class="am-btn am-btn-sm am-btn-primary am-icon-check"> 立即发布</button>
     </div>
 </form>
 {/block}
 {block name="js"}
-<script type="text/javascript" src="/static/webuploader/webuploader.min.js{:vcs()}"></script>
-<script type="text/javascript" src="/static/webuploader/webuploader.config.js{:vcs()}"></script>
+<!--<script type="text/javascript" src="/static/webuploader/webuploader.min.js{:vcs()}"></script>-->
+<!--<script type="text/javascript" src="/static/webuploader/webuploader.config.js{:vcs()}"></script>-->
 <script src="/static/editor/js/wangEditor.min.js?'"></script>
 <script> var editorTarget="message";</script>
 <script src="/static/editor/js/wangEditor.config.js"></script>
 <script type="text/javascript">
-    $('#channel_id').change(function(){
-        var id = $(this).val();
-        var _ca = $('#catid');
-        $.get("{:url('get_category')}",{id:id},function(res){
-            if(res.code == 200){
-                _ca.find('option').remove();
-                $.each(res.data,function(i,v){
-                    _ca.append('<option value="'+v.id+'">'+v.title+'</option>');
-                });
+    $(function(){
+        $(document).on('click','[data-remend]',function(){
+            var thisInputValue=$(this).find('[name="remend"]').val();
+            if(thisInputValue==0){
+                $(this).find('[name="remend"]').val('1');
+                $(this).addClass('am-active');
+            }else{
+                $(this).find('[name="remend"]').val('0');
+                $(this).removeClass('am-active');
             }
+        });
+        $(document).on('click','[data-ordertop]',function(){
+            var thisInputValue=$(this).find('[name="ordertop"]').val();
+            if(thisInputValue==0){
+                $(this).find('[name="ordertop"]').val('1');
+                $(this).addClass('am-active');
+            }else{
+                $(this).find('[name="ordertop"]').val('0');
+                $(this).removeClass('am-active');
+            }
+        });
+        $(document).on('click','[data-slider]',function(){
+            var thisInputValue=$(this).find('[name="slider"]').val();
+            if(thisInputValue==0){
+                $(this).find('[name="slider"]').val('1');
+                $(this).addClass('am-active');
+            }else{
+                $(this).find('[name="slider"]').val('0');
+                $(this).removeClass('am-active');
+            }
+        });
+        $(document).on('click','.am-widget-color>ul>li',function(){
+            var thisInputValue=$('[name="color"]').val();
+            var color = $(this).data('color-value');
+            $('[name="color"]').val(color);
+            $('.am-widget-color').css('background-color',color);
+            $('[name="subject"]').css('color',color);
 
         })
     })

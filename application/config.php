@@ -143,6 +143,7 @@ return [
         '__c__' =>  '/static/css',
         '__i__' =>  '/static/i',
         '__j__' =>  '/static/js',
+        '__vender__' => '/static/vender',
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

@@ -9,7 +9,14 @@ class Posts extends Common
 {
     public function index()
     {
-        $this->assign('channel', Channel::data_formcat(1));
+        $channel = Channel::data_formcat(1);
+        $cid = input('get.cid',$channel['0']['id']);
+        $this->assign('cid',$cid);
+        $this->assign('channel', $channel);
+
+        $category = Category::category($cid);
+        $this->assign('category',$category);
+
         return $this->fetch();
     }
 
@@ -31,7 +38,7 @@ class Posts extends Common
     }
     public function get_category(){
         $id = input('get.id');
-        $data = Category::category('type',$id);
+        $data = Category::category($id);
         $this->result($data,200,'分类返回成功');
     }
 }

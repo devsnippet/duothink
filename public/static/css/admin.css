@@ -284,3 +284,84 @@
 .am-tabs-bd .am-tab-panel{
     padding:0;
 }
+.am-article-property .am-btn.am-active,
+.am-get-catid .am-btn.am-active{
+    background-color: #0c80ba !important;
+    color: #fff;
+    border-color: #0c80ba;
+}
+.am-channel-list {
+    position: fixed;
+    top:100px;
+    left: 188px;
+    bottom: 0;
+    width: 120px;
+    font-size: 1.5rem;
+    box-shadow: inset -1px 0 0 #e1e4eb;
+}
+.am-channel-list .am-list-header{
+    border-top: none;
+    text-align: center;
+    padding:.75rem 0;
+    color: #777;
+    border-bottom-color: #e1e4eb;
+}
+.am-channel-list>ul>li{
+    border-color: transparent;
+    background-color: transparent;
+}
+.am-channel-list>ul>li>a {
+    padding:.55rem 0 .55rem 2rem;
+    background-color: transparent;
+}
+.am-channel-list>ul>li>a:hover,
+.am-channel-list>ul>li.am-active>a{
+    background-color: #eff4f8;
+}
+.am-posts-form {
+    padding-left: 120px;
+}
+.am-widget-color {
+    position: relative;
+}
+.am-widget-color:hover>ul{
+    display: block;
+}
+.am-widget-color>ul{
+    position: absolute;
+    height: 50px;
+    left: -1px;
+    right: -1px;
+    top:31px;
+    display: none;
+}
+.am-widget-color>ul>li>span {
+    display: block;
+    width: 100%;
+    height: 24px;
+}
+.am-color-default{
+    background-color: #444;
+}
+.am-color-main{
+    background-color: #2a8c70;
+}
+.am-color-primary{
+    background-color: #009ed2;
+}
+.am-color-success{
+    background-color: #5eb95e;
+}
+.am-color-warning{
+    background-color: #F37B1D;
+}
+.am-color-danger{
+    background-color: #dd514c;
+}
+.am-widget-color{
+    background-color: #444;
+    color: #fff;
+}
+.am-widget-color:hover {
+    color: #fff !important;
+}
